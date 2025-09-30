@@ -4,7 +4,7 @@
         "USRP1": {
             "type": "MultiUSRP",
             "mode": "RX",
-            "args": "addr0=192.168.10.201",
+            "args": "addr0=192.168.10.202",
             "clockref": ["mimo"],
             "rx-channels": [
                 {

@@ -4,7 +4,7 @@
         "USRP0": {
             "type": "MultiUSRP",
             "mode": "TX",
-            "args": "addr0=192.168.10.202",
+            "args": "addr0=192.168.10.201",
             "tx-channels": [
                 {
                     "for-channels": [0],
