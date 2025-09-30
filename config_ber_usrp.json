@@ -1,0 +1,49 @@
+{
+    "version": 3,
+    "devices": {
+        "USRP0": {
+            "type": "MultiUSRP",
+            "mode": "TX",
+            "args": "addr0=192.168.10.202",
+            "tx-channels": [
+                {
+                    "for-channels": [0],
+                    "rate": 5e6,
+                    "freq": 2.4e9,
+                    "gain": 10,
+                    "ant": "TX/RX"
+                }
+            ],
+            "tx-streamers": [ { "channels": [0] } ]
+        },
+        "USRP1": {
+            "type": "MultiUSRP",
+            "mode": "RX",
+            "args": "addr0=192.168.10.201",
+            "clockref": ["mimo"],
+            "rx-channels": [
+                {
+                    "for-channels": [0],
+                    "rate": 5e6,
+                    "freq": 2.4e9,
+                    "gain": 10,
+                    "ant": "TX/RX"
+                }
+            ],
+            "rx-streamers": [ { "channels": [0] } ]
+        }
+    },
+    "controllers": {
+        "TX0": {
+            "type": "CyclicTX",
+            "streamers": ["USRP0:TX:0"],
+            "syncmode": "USRP"
+        },
+        "RX0": {
+            "type": "CyclicRX",
+            "streamers": ["USRP1:RX:0"],
+            "syncmode": "USRP"
+        }
+    },
+    "port": 8888
+}

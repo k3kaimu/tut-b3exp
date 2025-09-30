@@ -1,0 +1,23 @@
+{
+    "version": 3,
+    "devices": {
+        "HackRF_1": {
+            "type": "HackRF",
+            "mode": "RX",
+            "serial": "2a14a067",
+            "rate": 2e6,
+            "bw": 5e6,
+            "freq": 2.4e9,
+            "useRFAmp": true,
+            "useANTPwr": false,
+            "gain": 40
+        }
+    },
+    "controllers": {
+        "RX0": {
+            "type": "CyclicRX:ComplexInt8",
+            "streamers": ["HackRF_1"]
+        }
+    },
+    "port": 8888
+}
