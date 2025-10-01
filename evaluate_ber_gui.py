@@ -1,5 +1,5 @@
-# import sys
-# sys.path.append("../client")
+import sys
+sys.path.append("./client")
 
 import argparse
 import ezsdr

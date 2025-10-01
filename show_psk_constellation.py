@@ -1,3 +1,6 @@
+import sys
+sys.path.append("./client")
+
 import argparse
 import ezsdr
 import numpy as np
@@ -20,7 +23,7 @@ argparser.add_argument('--port', default=8888, type=int)
 argparser.add_argument('--onlyTx', default=0, type=int)
 argparser.add_argument('--onlyRx', default=0, type=int)
 argparser.add_argument('--cnstl', default="[]")
-argparser.add_argument('--wirefmt', default="fc32")
+# argparser.add_argument('--wirefmt', default="fc32")
 
 
 args = argparser.parse_args()
@@ -32,11 +35,11 @@ if args.onlyTx > 0 and args.onlyRx > 0:
 IPADDR = args.ipaddr;
 PORT = args.port;
 
-wirefmt = np.complex64
-if args.wirefmt == "sc16":
-    wirefmt = ezsdr.complex_int16
-elif args.wirefmt == "sc8":
-    wirefmt = ezsdr.complex_int8
+# wirefmt = np.complex64
+# if args.wirefmt == "sc16":
+#     wirefmt = ezsdr.complex_int16
+# elif args.wirefmt == "sc8":
+#     wirefmt = ezsdr.complex_int8
 
 bUseTx = not args.onlyRx
 bUseRx = not args.onlyTx
@@ -114,11 +117,11 @@ with ezsdr.EzSDRClient(IPADDR, PORT) as client:
     signals = gen_transmit_signal(0.1)
 
     if bUseRx:
-        RX0 = ezsdr.CyclicReceiver(client, "RX0", dtype_wire=wirefmt, dtype_cpu=np.complex64)
+        RX0 = ezsdr.CyclicReceiver(client, "RX0", dtype_wire=None, dtype_cpu=np.complex64)
         RX0.changeAlignSize(nSamples)
 
     if bUseTx:
-        TX0 = ezsdr.CyclicTransmitter(client, "TX0", dtype_wire=wirefmt, dtype_cpu=np.complex64)
+        TX0 = ezsdr.CyclicTransmitter(client, "TX0", dtype_wire=None, dtype_cpu=np.complex64)
         TX0.transmit(signals)
 
     fig = plt.figure()
