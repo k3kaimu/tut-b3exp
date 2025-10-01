@@ -22,7 +22,7 @@ argparser.add_argument('--delaythr', default=1000, type=int)
 argparser.add_argument('--nsym', default=10, type=int)
 argparser.add_argument('--nrep', default=100, type=int)
 argparser.add_argument('--cnstl', default="[]")
-argparser.add_argument('--wirefmt', default="fc32")
+# argparser.add_argument('--wirefmt', default="fc32")
 
 
 args = argparser.parse_args()
@@ -37,11 +37,11 @@ PORT = args.port;
 bUseTx = not args.onlyRx
 bUseRx = not args.onlyTx
 
-wirefmt = np.complex64
-if args.wirefmt == "sc16":
-    wirefmt = ezsdr.complex_int16
-elif args.wirefmt == "sc8":
-    wirefmt = ezsdr.complex_int8
+# wirefmt = np.complex64
+# if args.wirefmt == "sc16":
+#     wirefmt = ezsdr.complex_int16
+# elif args.wirefmt == "sc8":
+#     wirefmt = ezsdr.complex_int8
 
 # 送受信の遅延時間を何サンプルまで許すか
 nDelayThr = args.delaythr if args.delaythr > 0 else 2**62
@@ -135,8 +135,8 @@ else:
 
 # with ezsdr.SimpleClient(IPADDR, PORT, nTXUSRP, nRXUSRP, wirefmt=wirefmt) as usrp:
 with ezsdr.EzSDRClient(IPADDR, PORT) as client:
-    TX0 = ezsdr.CyclicTransmitter(client, "TX0", dtype_wire=wirefmt, dtype_cpu=np.complex64)
-    RX0 = ezsdr.CyclicReceiver(client, "RX0", dtype_wire=wirefmt, dtype_cpu=np.complex64)
+    TX0 = ezsdr.CyclicTransmitter(client, "TX0", dtype_wire=None, dtype_cpu=np.complex64)
+    RX0 = ezsdr.CyclicReceiver(client, "RX0", dtype_wire=None, dtype_cpu=np.complex64)
 
     fig = plt.figure()
     ax1 = fig.add_subplot(1, 1, 1)
