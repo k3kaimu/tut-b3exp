@@ -10,7 +10,7 @@
             "freq": 2.4e9,
             "useRFAmp": true,
             "useANTPwr": false,
-            "gain": 40
+            "gain": 30
         }
     },
     "controllers": {
